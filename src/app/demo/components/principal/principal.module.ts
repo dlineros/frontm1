@@ -15,8 +15,9 @@ import { SplitterModule } from 'primeng/splitter';
 import { PrincipalComponent } from './principal.component';
 import { SubirdocumentoComponent } from './subirdocumento/subirdocumento/subirdocumento.component';
 import { SubirdocumentoModule } from './subirdocumento/subirdocumento/subirdocumento.module';
-import { SeleccionarfirmanteModule } from './seleccionarfirmante/seleccionarfirmante.module';
+import { firmanteModule } from './firmante/firmante.module';
 import { CommonModule } from '@angular/common';
+import { ListboxModule } from 'primeng/listbox';
 
 
 
@@ -38,7 +39,10 @@ import { CommonModule } from '@angular/common';
         DividerModule,
         SplitterModule,
         SubirdocumentoModule,
-        SeleccionarfirmanteModule
+        ListboxModule,
+        ButtonModule,
+        firmanteModule,
+
 
     ],
     declarations:[

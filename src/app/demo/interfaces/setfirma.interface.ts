@@ -1,6 +1,12 @@
 export interface Setfirma
 {
     id?:string;
-    nombre:string;
-    email:string;
+    Nombre: string;       // Nombre del firmante
+    ApellidoPaterno: string; // Apellido paterno del firmante
+    ApellidoMaterno: string;
+    Email: string;
+    CantidadDoctos: Number;
+    TipoFirma: Number;
+    Celular: string
+
   }

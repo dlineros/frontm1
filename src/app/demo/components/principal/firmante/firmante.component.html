@@ -1,0 +1,89 @@
+<div class="p-fluid p-mt-4 p-mx-3">
+    <h2 class="p-text-center">Gestión de Firmantes</h2>
+
+    <!-- Formulario para agregar o editar firmante -->
+    <div class="form-container p-p-3 p-mb-4 p-shadow-2 p-border-round p-card">
+      <h3>{{ editIndex === null ? 'Agregar' : 'Editar' }} Firmante</h3>
+      <form (ngSubmit)="addFirmante()" class="p-fluid">
+        <div class="p-field">
+          <label for="Nombre">Nombre</label>
+          <input id="Nombre" pInputText [(ngModel)]="newFirmante.Nombre" name="Nombre" required />
+        </div>
+        <div class="p-field">
+          <label for="ApellidoPaterno">Apellido Paterno</label>
+          <input id="ApellidoPaterno" pInputText [(ngModel)]="newFirmante.ApellidoPaterno" name="ApellidoPaterno" required />
+        </div>
+        <div class="p-field">
+          <label for="ApellidoMaterno">Apellido Materno</label>
+          <input id="ApellidoMaterno" pInputText [(ngModel)]="newFirmante.ApellidoMaterno" name="ApellidoMaterno" />
+        </div>
+        <div class="p-field">
+          <label for="Email">Email</label>
+          <input id="Email" pInputText [(ngModel)]="newFirmante.Email" name="Email" />
+        </div>
+        <div class="p-field">
+          <label for="Celular">Celular</label>
+          <input id="Celular" pInputText [(ngModel)]="newFirmante.Celular" name="Celular" />
+        </div>
+        <div class="p-d-flex p-jc-between p-mt-3">
+          <p-button type="submit" label="{{ editIndex === null ? 'Agregar' : 'Guardar' }}" icon="pi pi-check"></p-button>
+          <p-button *ngIf="editIndex !== null" label="Cancelar" icon="pi pi-times" class="p-button-text p-button-danger" (click)="cancelEdit()"></p-button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Listbox para mostrar los firmantes -->
+    <p-listbox
+      [options]="firmantes"
+      optionLabel="Nombre"
+      [(ngModel)]="selectedFirmante"
+      styleClass="p-shadow-2 p-border-round w-full"
+      (onChange)="editFirmante(firmantes.indexOf(selectedFirmante))"
+    >
+      <ng-template let-firmante pTemplate="item">
+        <div class="firmante-item p-d-flex p-ai-center p-jc-between p-p-3">
+          <div>
+            <div><strong>Nombre:</strong> {{ firmante.Nombre }}</div>
+            <div><strong>Apellido Paterno:</strong> {{ firmante.ApellidoPaterno }}</div>
+            <div><strong>Apellido Materno:</strong> {{ firmante.ApellidoMaterno }}</div>
+            <div><strong>Email:</strong> {{ firmante.Email }}</div>
+            <div><strong>Celular:</strong> {{ firmante.Celular }}</div>
+          </div>
+          <div class="actions">
+            <p-button icon="pi pi-pencil" (click)="editFirmante(firmantes.indexOf(firmante))" class="p-button-rounded p-button-text p-button-info"></p-button>
+            <p-button icon="pi pi-trash" (click)="deleteFirmante(firmantes.indexOf(firmante))" class="p-button-rounded p-button-text p-button-danger"></p-button>
+          </div>
+        </div>
+      </ng-template>
+    </p-listbox>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+    <h2>Listado de Items</h2>
+    <ul *ngIf="items.length > 0; else noItems">
+      <li *ngFor="let item of items">
+        <h3>{{ item.name }}</h3>
+        <p>{{ item.description }}</p>
+      </li>
+    </ul>
+
+    <ng-template #noItems>
+      <p>No hay items disponibles.</p>
+    </ng-template>
+-->
+
+
+
+
