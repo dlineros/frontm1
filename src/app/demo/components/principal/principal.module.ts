@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { PrincipalRoutingModule } from './principal-routing.module';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
@@ -11,13 +10,16 @@ import { FieldsetModule } from 'primeng/fieldset';
 import { MenuModule } from 'primeng/menu';
 import { DividerModule } from 'primeng/divider';
 import { SplitterModule } from 'primeng/splitter';
+import { CommonModule } from '@angular/common';
+import { ListboxModule } from 'primeng/listbox';
+import { InputTextModule } from 'primeng/inputtext';
 
 import { PrincipalComponent } from './principal.component';
 import { SubirdocumentoComponent } from './subirdocumento/subirdocumento/subirdocumento.component';
 import { SubirdocumentoModule } from './subirdocumento/subirdocumento/subirdocumento.module';
 import { firmanteModule } from './firmante/firmante.module';
-import { CommonModule } from '@angular/common';
-import { ListboxModule } from 'primeng/listbox';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -42,6 +44,9 @@ import { ListboxModule } from 'primeng/listbox';
         ListboxModule,
         ButtonModule,
         firmanteModule,
+        InputTextModule,
+        FormsModule
+
 
 
     ],

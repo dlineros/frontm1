@@ -15,11 +15,24 @@ import { PhotoService } from './demo/service/photo.service';
 
 @NgModule({
     declarations: [AppComponent, NotfoundComponent],
-    imports: [AppRoutingModule, AppLayoutModule],
+    imports: [AppRoutingModule,
+              AppLayoutModule
+
+
+
+
+
+
+
+            ],
     providers: [
         { provide: LocationStrategy, useClass: PathLocationStrategy },
         CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
+        PhotoService, ProductService,
+
+
+
+
     ],
     bootstrap: [AppComponent],
 })
