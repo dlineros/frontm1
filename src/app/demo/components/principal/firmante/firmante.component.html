@@ -1,37 +1,48 @@
-
-
-<h5>Inline</h5>
-			<div class="formgroup-inline">
-				<div class="field">
-					<label htmlFor="firstname1" class="p-sr-only">Firstname</label>
-					<input pInputText id="firstname1" type="text" placeholder="Firstname" />
-				</div>
-				<div class="field">
-					<label htmlFor="lastname1" class="p-sr-only">Lastname</label>
-					<input pInputText id="lastname1" type="text" placeholder="Lastname" />
-				</div>
-				<button pButton label="Submit"></button>
-			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="container p-fluid p-mt-4 p-mx-3">
+
+    <h5 class="p-mb-3">{{ editIndex === null ? 'Agregar Firmante' : 'Editar Firmante' }}</h5>
+    <form (ngSubmit)="addFirmante()" class="p-fluid">
+                <div class="formgroup-inline">
+                    <div class="field">
+                        <label htmlFor="Nombre" class="p-sr-only">Nombre</label>
+                        <input id="Nombre" type="text" pInputText [(ngModel)]="newFirmante.Nombre" name="Nombre" placeholder="Ingrese el nombre" required />
+                    </div>
+                    <div class="field">
+                        <label htmlFor="ApellidoPaterno" class="p-sr-only">Apellido Paterno</label>
+                        <input id="ApellidoPaterno" type="text" pInputText [(ngModel)]="newFirmante.ApellidoPaterno" name="ApellidoPaterno" placeholder="Ingrese el apellido paterno" required />
+                    </div>
+                    <div class="field">
+                        <label htmlFor="ApellidoMaterno" class="p-sr-only">Apellido Materno</label>
+                        <input id="ApellidoMaterno" type="text" pInputText [(ngModel)]="newFirmante.ApellidoMaterno" name="ApellidoMaterno" placeholder="Ingrese el apellido materno" required />
+                    </div>
+                    <div class="field">
+                        <label htmlFor="Email" class="p-sr-only">Email</label>
+                        <input id="Email" pInputText [(ngModel)]="newFirmante.Email" name="Email" type="email" placeholder="ejemplo@correo.com" required />
+                    </div>
+                    <div class="field">
+                        <label htmlFor="Celular" class="p-sr-only">Celular</label>
+                        <input id="Celular" pInputText [(ngModel)]="newFirmante.Celular" name="Celular" type="tel" placeholder="9XXXXXXXX" required />
+                    </div>
+
+
+                    <div class="p-d-flex p-jc-between p-mt-3">
+                        <p-button type="submit" label="{{ editIndex === null ? 'Agregar' : 'Guardar Cambios' }}" icon="pi pi-check"></p-button>
+                        <p-button *ngIf="editIndex !== null" label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="cancelEdit()"></p-button>
+                      </div>
+                </div>
+
+    </form>
+
+
+
+
+
+
+
+
+
     <!-- Formulario para agregar o editar firmante -->
-    <div class="form-container p-p-3 p-shadow-4 p-border-round p-card">
+    <!-- <div class="form-container p-p-3 p-shadow-4 p-border-round p-card">
       <h3 class="p-mb-3">{{ editIndex === null ? 'Agregar Nuevo Firmante' : 'Editar Firmante' }}</h3>
       <form (ngSubmit)="addFirmante()" class="p-fluid">
         <div class="p-field">
@@ -59,10 +70,63 @@
           <p-button *ngIf="editIndex !== null" label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="cancelEdit()"></p-button>
         </div>
       </form>
-    </div>
+    </div> -->
+
+
+    <h5>Firmantes</h5>
+    <p-table
+    [value]="firmantes"
+    [paginator]="true"
+    [rows]="5"
+    responsiveLayout="scroll"
+
+
+    optionLabel="Nombre"
+    [(ngModel)]="selectedFirmante"
+    (onChange)="editFirmante(firmantes.indexOf(selectedFirmante))"
+
+
+
+
+    >
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="Nombre">Nombre <p-sortIcon field="Nombre"></p-sortIcon></th>
+                <th pSortableColumn="Email">Email <p-sortIcon field="Email"></p-sortIcon></th>
+                <th pSortableColumn="Celular">Celular <p-sortIcon field="Celular"></p-sortIcon></th>
+                <th>Editar</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body"  let-firmante pTemplate="item"
+
+        >
+            <tr>
+                <td style="width: 35%; min-width: 5rem;">{{firmantes.Nombre}}</td>
+                <td style="width: 35%; min-width: 7rem;">{{firmantes.Email}}</td>
+                <td style="width: 35%; min-width: 8rem;">{{firmantes.Celular}}</td>
+                <td style="width: 15%;">
+                    <!-- <button pButton pRipple type="button" icon="pi pi-search" class="p-button p-component p-button-text p-button-icon-only"></button> -->
+                    <p-button icon="pi pi-pencil" (click)="editFirmante(firmantes.indexOf(firmante))" class="p-button-rounded p-button-text p-button-warning"></p-button>
+                    <p-button icon="pi pi-trash" (click)="deleteFirmante(firmantes.indexOf(firmante))" class="p-button-rounded p-button-text p-button-danger"></p-button>
+
+
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+
+
+
+
+
+
+
+
+
 
     <!-- Listado de firmantes -->
-    <div class="list-container p-mt-5">
+    <!-- <div class="list-container p-mt-5">
       <p-card header="Firmantes" class="p-shadow-4 p-border-round">
         <p-listbox
           [options]="firmantes"
@@ -88,7 +152,7 @@
           </ng-template>
         </p-listbox>
       </p-card>
-    </div>
+    </div> -->
   </div>
 
 

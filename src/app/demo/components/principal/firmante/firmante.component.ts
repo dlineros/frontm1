@@ -15,6 +15,7 @@ import { FirmanteService } from './firmante.service';
   export class firmanteComponent {
 
 
+
     firmantes: Setfirma[] = [];
     selectedFirmante: Setfirma | null = null; // Agrega esta propiedad
     newFirmante: Setfirma = {
