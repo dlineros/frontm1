@@ -8,13 +8,12 @@ import { FirmanteService } from './firmante.service';
 
 @Component({
     selector: 'app-firmante',
-    templateUrl: './firmante.component.html'
+    templateUrl: './firmante.component.html',
+    styleUrl: './firmante.component.css',
 
 
   })
   export class firmanteComponent {
-
-
 
     firmantes: Setfirma[] = [];
     selectedFirmante: Setfirma | null = null; // Agrega esta propiedad

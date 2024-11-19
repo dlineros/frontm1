@@ -34,125 +34,50 @@
     </form>
 
 
-
-
-
-
-
-
-
-    <!-- Formulario para agregar o editar firmante -->
-    <!-- <div class="form-container p-p-3 p-shadow-4 p-border-round p-card">
-      <h3 class="p-mb-3">{{ editIndex === null ? 'Agregar Nuevo Firmante' : 'Editar Firmante' }}</h3>
-      <form (ngSubmit)="addFirmante()" class="p-fluid">
-        <div class="p-field">
-          <label for="Nombre">Nombre</label>
-          <input id="Nombre" pInputText [(ngModel)]="newFirmante.Nombre" name="Nombre" placeholder="Ingrese el nombre completo" required />
-        </div>
-        <div class="p-field">
-          <label for="ApellidoPaterno">Apellido Paterno</label>
-          <input id="ApellidoPaterno" pInputText [(ngModel)]="newFirmante.ApellidoPaterno" name="ApellidoPaterno" placeholder="Ingrese el apellido paterno" required />
-        </div>
-        <div class="p-field">
-          <label for="ApellidoMaterno">Apellido Materno</label>
-          <input id="ApellidoMaterno" pInputText [(ngModel)]="newFirmante.ApellidoMaterno" name="ApellidoMaterno" placeholder="Ingrese el apellido materno" />
-        </div>
-        <div class="p-field">
-          <label for="Email">Correo Electrónico</label>
-          <input id="Email" pInputText [(ngModel)]="newFirmante.Email" name="Email" type="email" placeholder="ejemplo@correo.com" />
-        </div>
-        <div class="p-field">
-          <label for="Celular">Número de Celular</label>
-          <input id="Celular" pInputText [(ngModel)]="newFirmante.Celular" name="Celular" type="tel" placeholder="9XXXXXXXX" />
-        </div>
-        <div class="p-d-flex p-jc-between p-mt-3">
-          <p-button type="submit" label="{{ editIndex === null ? 'Agregar' : 'Guardar Cambios' }}" icon="pi pi-check"></p-button>
-          <p-button *ngIf="editIndex !== null" label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="cancelEdit()"></p-button>
-        </div>
-      </form>
-    </div> -->
-
-
     <h5>Firmantes</h5>
     <p-table
     [value]="firmantes"
-    [paginator]="true"
+    [paginator]="false"
     [rows]="5"
     responsiveLayout="scroll"
-
-
-    optionLabel="Nombre"
-    [(ngModel)]="selectedFirmante"
-    (onChange)="editFirmante(firmantes.indexOf(selectedFirmante))"
-
-
-
-
+    (onRowSelect)="editFirmante(firmantes.indexOf(selectedFirmante))"
     >
         <ng-template pTemplate="header">
             <tr>
                 <th pSortableColumn="Nombre">Nombre <p-sortIcon field="Nombre"></p-sortIcon></th>
                 <th pSortableColumn="Email">Email <p-sortIcon field="Email"></p-sortIcon></th>
                 <th pSortableColumn="Celular">Celular <p-sortIcon field="Celular"></p-sortIcon></th>
-                <th>Editar</th>
+                <th>Acciones</th>
             </tr>
         </ng-template>
-        <ng-template pTemplate="body"  let-firmante pTemplate="item"
-
-        >
+        <ng-template let-firmante pTemplate="body">
             <tr>
-                <td style="width: 35%; min-width: 5rem;">{{firmantes.Nombre}}</td>
-                <td style="width: 35%; min-width: 7rem;">{{firmantes.Email}}</td>
-                <td style="width: 35%; min-width: 8rem;">{{firmantes.Celular}}</td>
-                <td style="width: 15%;">
-                    <!-- <button pButton pRipple type="button" icon="pi pi-search" class="p-button p-component p-button-text p-button-icon-only"></button> -->
-                    <p-button icon="pi pi-pencil" (click)="editFirmante(firmantes.indexOf(firmante))" class="p-button-rounded p-button-text p-button-warning"></p-button>
-                    <p-button icon="pi pi-trash" (click)="deleteFirmante(firmantes.indexOf(firmante))" class="p-button-rounded p-button-text p-button-danger"></p-button>
+                <td style="width: 30%; min-width: 5rem;">{{firmante.Nombre }} {{firmante.ApellidoPaterno }}</td>
+                <td style="width: 30%; min-width: 7rem;">{{firmante.Email}}</td>
+                <td style="width: 20%; min-width: 8rem;">{{firmante.Celular}}</td>
+                <td style="width: 20%; min-width: 10rem; display: flex; gap: 0.5rem; justify-content: center;">
+                    <!-- Botón de Editar -->
+                    <p-button
+                        icon="pi pi-pencil"
+                        class="p-button-rounded p-button-text p-button-warning"
+                        (click)="editFirmante(firmantes.indexOf(firmante))"
+                        pTooltip="Editar firmante"
+                        tooltipPosition="top"
+                    ></p-button>
 
-
+                    <!-- Botón de Eliminar -->
+                    <p-button
+                        icon="pi pi-trash"
+                        class="p-button-rounded p-button-text p-button-danger"
+                        (click)="deleteFirmante(firmantes.indexOf(firmante))"
+                        pTooltip="Eliminar firmante"
+                        tooltipPosition="top"
+                    ></p-button>
                 </td>
             </tr>
         </ng-template>
     </p-table>
 
-
-
-
-
-
-
-
-
-
-
-    <!-- Listado de firmantes -->
-    <!-- <div class="list-container p-mt-5">
-      <p-card header="Firmantes" class="p-shadow-4 p-border-round">
-        <p-listbox
-          [options]="firmantes"
-          optionLabel="Nombre"
-          [(ngModel)]="selectedFirmante"
-          styleClass="p-listbox-custom p-shadow-1 p-border-round w-full"
-          (onChange)="editFirmante(firmantes.indexOf(selectedFirmante))"
-        >
-          <ng-template let-firmante pTemplate="item">
-            <div class="firmante-item p-d-flex p-ai-center p-jc-between p-p-2">
-              <div>
-                <div><strong>Nombre:</strong> {{ firmante.Nombre }}</div>
-                <div><strong>Apellido Paterno:</strong> {{ firmante.ApellidoPaterno }}</div>
-                <div *ngIf="firmante.ApellidoMaterno"><strong>Apellido Materno:</strong> {{ firmante.ApellidoMaterno }}</div>
-                <div><strong>Email:</strong> {{ firmante.Email }}</div>
-                <div><strong>Celular:</strong> {{ firmante.Celular }}</div>
-              </div>
-              <div class="actions">
-                <p-button icon="pi pi-pencil" (click)="editFirmante(firmantes.indexOf(firmante))" class="p-button-rounded p-button-text p-button-warning"></p-button>
-                <p-button icon="pi pi-trash" (click)="deleteFirmante(firmantes.indexOf(firmante))" class="p-button-rounded p-button-text p-button-danger"></p-button>
-              </div>
-            </div>
-          </ng-template>
-        </p-listbox>
-      </p-card>
-    </div> -->
   </div>
 
 
