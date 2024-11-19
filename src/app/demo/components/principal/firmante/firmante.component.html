@@ -25,10 +25,29 @@
                     </div>
 
 
-                    <div class="p-d-flex p-jc-between p-mt-3">
-                        <p-button type="submit" label="{{ editIndex === null ? 'Agregar' : 'Guardar Cambios' }}" icon="pi pi-check"></p-button>
-                        <p-button *ngIf="editIndex !== null" label="Cancelar" icon="pi pi-times" class="p-button-outlined p-button-danger" (click)="cancelEdit()"></p-button>
-                      </div>
+                    <div class="p-d-flex p-jc-end p-ai-center p-mt-3 p-gap-3">
+                        <!-- Botón Agregar/Guardar Cambios -->
+                        <p-button
+                            type="submit"
+                            label="{{ editIndex === null ? 'Agregar' : 'Guardar Cambios' }}"
+                            icon="pi pi-check"
+                            class="p-button-rounded p-button-success"
+
+                            tooltipPosition="top"
+                        ></p-button>
+
+                        <!-- Botón Cancelar -->
+                        <p-button
+                            *ngIf="editIndex !== null"
+                            label="Cancelar"
+                            icon="pi pi-times"
+                            class="p-button-rounded p-button-outlined p-button-danger"
+                            (click)="cancelEdit()"
+                            pTooltip="Cancelar edición actual"
+                            tooltipPosition="top"
+                        ></p-button>
+                    </div>
+
                 </div>
 
     </form>
@@ -52,9 +71,9 @@
         </ng-template>
         <ng-template let-firmante pTemplate="body">
             <tr>
-                <td style="width: 30%; min-width: 5rem;">{{firmante.Nombre }} {{firmante.ApellidoPaterno }}</td>
-                <td style="width: 30%; min-width: 7rem;">{{firmante.Email}}</td>
-                <td style="width: 20%; min-width: 8rem;">{{firmante.Celular}}</td>
+                <td style="width: 30%; min-width: 5rem;">{{firmante.Nombre }} {{firmante.ApellidoPaterno }} </td>
+                <td style="width: 30%; min-width: 10rem;">{{firmante.Email}}</td>
+                <td style="width: 20%; min-width: 8rem;">{{firmante.Celular}} </td>
                 <td style="width: 20%; min-width: 10rem; display: flex; gap: 0.5rem; justify-content: center;">
                     <!-- Botón de Editar -->
                     <p-button

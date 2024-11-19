@@ -9,7 +9,8 @@ import { FirmanteService } from './firmante.service';
 @Component({
     selector: 'app-firmante',
     templateUrl: './firmante.component.html',
-    styleUrl: './firmante.component.css',
+    styleUrls: ['./firmante.component.css']
+
 
 
   })
@@ -22,9 +23,10 @@ import { FirmanteService } from './firmante.service';
       ApellidoPaterno: '',
       ApellidoMaterno: '',
       Email: '',
+      Celular: '',
       CantidadDoctos: 0, // Valor predeterminado para CantidadDoctos
-      TipoFirma: 1,       // Valor predeterminado para TipoFirma
-      Celular: ''
+      TipoFirma: 1      // Valor predeterminado para TipoFirma
+
     };
     editIndex: number | null = null;
 

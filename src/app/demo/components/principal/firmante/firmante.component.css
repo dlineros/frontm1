@@ -1,8 +1,0 @@
-.p-button-warning:hover {
-    background-color: #ffc107  !important; /* Amarillo más oscuro */
-    color: white !important;
-}
-.p-button-danger:hover {
-    background-color: #dc3545  !important; /* Rojo más oscuro */
-    color: white  !important;
-}
