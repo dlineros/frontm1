@@ -1,16 +1,20 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, Output,OnInit  } from '@angular/core';
+import { Component, EventEmitter, Input, Output,OnInit, ViewEncapsulation  } from '@angular/core';
 import { Setfirma } from '../../../interfaces/setfirma.interface';
 import { ItemService } from 'src/app/demo/service/item.service';
 import { FirmanteService } from './firmante.service';
 
 
+
 @Component({
     selector: 'app-firmante',
-    templateUrl: './firmante.component.html',
-    styleUrls: ['./firmante.component.css']
+    templateUrl: './firmante.component.html'
+
+
   })
   export class firmanteComponent {
+
+
     firmantes: Setfirma[] = [];
     selectedFirmante: Setfirma | null = null; // Agrega esta propiedad
     newFirmante: Setfirma = {

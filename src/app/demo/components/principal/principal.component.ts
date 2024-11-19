@@ -5,8 +5,8 @@ import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
     selector: 'app-principal',
-    templateUrl: './principal.component.html',
-    styleUrl: './principal.component.css'
+    templateUrl: './principal.component.html'
+
 
 })
 export class PrincipalComponent implements OnInit {
