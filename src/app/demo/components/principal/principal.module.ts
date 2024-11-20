@@ -6,6 +6,7 @@ import { SubirdocumentoComponent } from './subirdocumento/subirdocumento/subirdo
 import { SubirdocumentoModule } from './subirdocumento/subirdocumento/subirdocumento.module';
 import { firmanteModule } from './firmante/firmante.module';
 import { FormsModule } from '@angular/forms';
+import { TodoComponent } from './todo/todo.component';
 
 
 
@@ -21,7 +22,8 @@ import { FormsModule } from '@angular/forms';
         SubirdocumentoModule,
         firmanteModule,
         FormsModule,
-        CommonModule
+        CommonModule,
+        TodoComponent
 
     ],
     declarations:[
