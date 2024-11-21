@@ -3,11 +3,12 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Todo } from 'src/app/store/model/todo.model';
 import { addTodo, toggleTodo, loadTodos } from 'src/app/store/actions/todo.actions';
+import { CommonModule } from '@angular/common'; // Importa CommonModule
 
 @Component({
   selector: 'app-todo',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './todo.component.html',
   styleUrl: './todo.component.css',
 })
