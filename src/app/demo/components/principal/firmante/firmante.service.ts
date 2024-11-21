@@ -61,7 +61,6 @@ export class FirmanteService {
   getFirmantes()
   {
     this.store.dispatch(loadFirmantes());
-
   }
 
 

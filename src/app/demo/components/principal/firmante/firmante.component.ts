@@ -47,11 +47,11 @@ import { TableModule } from 'primeng/table';
     InputTextModule,
     TableModule
 ],
-
-
-
   })
-  export class firmanteComponent {
+
+
+
+  export class FirmanteComponent implements OnInit {
 
     firmantes: Firmante[] = [];
     selectedFirmante: Firmante | null = null; // Agrega esta propiedad
@@ -66,10 +66,22 @@ import { TableModule } from 'primeng/table';
 
     };
     editIndex: number | null = null;
+    constructor(private firmanteService: FirmanteService) {}
 
-    constructor(private firmanteService: FirmanteService) {
-      this.firmantes = this.firmanteService.getFirmantes();
+    ngOnInit(): void {
+      this.firmanteService.getFirmantes().subscribe(
+        (data: Firmante[]) => {
+          this.firmantes = data;
+        },
+        (error) => {
+          console.error('Error al obtener los firmantes:', error);
+        }
+      );
     }
+
+
+
+
 
     addFirmante() {
       if (this.editIndex === null) {
