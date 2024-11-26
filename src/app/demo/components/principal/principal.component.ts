@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { MenuItem } from 'primeng/api';
-import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
     selector: 'app-principal',
