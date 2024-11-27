@@ -3,7 +3,18 @@
                 <div class="formgroup-inline">
                     <div class="field">
                         <label htmlFor="Nombre" class="p-sr-only">Nombre</label>
-                        <input id="Nombre" type="text" pInputText [(ngModel)]="newFirmante.Nombre" name="Nombre" placeholder="Ingrese el nombre" required />
+                        <input
+                        placeholder="Ingrese el nombre"
+                        [formControl]="txtInputNombre"
+                        (Keyup.enter)="agregar()"
+                        />
+
+                      <!--   id="Nombre"
+                        type="text"
+                        pInputText [(ngModel)]="newFirmante.Nombre"
+                        name="Nombre"
+                         -->
+
                     </div>
                     <div class="field">
                         <label htmlFor="ApellidoPaterno" class="p-sr-only">Apellido Paterno</label>

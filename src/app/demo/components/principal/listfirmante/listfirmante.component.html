@@ -3,6 +3,12 @@
 
 
     <h5>Firmantes</h5>
+
+
+
+
+
+
     <p-table [value]="firmantes" [paginator]="false" [rows]="5" responsiveLayout="scroll"
         (onRowSelect)="editFirmante(firmantes.indexOf(selectedFirmante))">
         <ng-template pTemplate="header">
@@ -13,7 +19,7 @@
                 <th>Acciones</th>
             </tr>
         </ng-template>
-        <ng-template let-firmante pTemplate="body">
+        <ng-template let firmante of firmantes pTemplate="body">
             <tr>
                 <td style="width: 30%; min-width: 5rem;">{{firmante.Nombre }} {{firmante.ApellidoPaterno }} </td>
                 <td style="width: 30%; min-width: 10rem;">{{firmante.Email}}</td>

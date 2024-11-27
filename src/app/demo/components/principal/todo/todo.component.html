@@ -1,7 +1,0 @@
-<div *ngFor="let todo of todos$ | async">
-    <span [style.textDecoration]="todo.completed ? 'line-through' : 'none'">
-      {{ todo.title }}
-    </span>
-    <button (click)="onToggle(todo.id)">Toggle</button>
-  </div>
-  <button (click)="onAddTodo()">Add Todo</button>

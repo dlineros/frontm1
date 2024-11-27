@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
@@ -26,16 +26,32 @@ import { Store } from '@ngrx/store';
     imports: [
         CommonModule,
         FormsModule, ButtonModule, ListboxModule, CardModule, AutoCompleteModule, ChipsModule, DropdownModule, InputMaskModule,
-        InputNumberModule, CascadeSelectModule, MultiSelectModule, InputTextareaModule, InputTextModule, TableModule
+        InputNumberModule, CascadeSelectModule, MultiSelectModule, InputTextareaModule, InputTextModule, TableModule,
+        ReactiveFormsModule
     ],
     templateUrl: './addfirmante.component.html',
     styleUrl: './addfirmante.component.css',
 })
 export class AddfirmanteComponent implements OnInit {
+
+    txtInputNombre: FormControl;
+
     firmantes: Firmante[] = [];
-    newFirmante: Firmante;
+    newFirmante: Firmante = {
+        Nombre: '',
+        ApellidoPaterno: '',
+        ApellidoMaterno: '',
+        Email: '',
+        CantidadDoctos: 0, // Valor predeterminado
+        TipoFirma: 1,       // Valor predeterminado
+        Celular: ''
+
+
+    };
 
     constructor(private store: Store<{ firmantes: Firmante[] }>) {
+        this.txtInputNombre = new FormControl('Nombre', Validators.required)
+
         this.store.select('firmantes').subscribe(firmantes => {
             this.firmantes = firmantes;
         });
@@ -47,7 +63,13 @@ export class AddfirmanteComponent implements OnInit {
     selectedFirmante: Firmante | null = null; // Agrega esta propiedad
     editIndex: number | null = null;
 
+    agregar() {
+        if (this.txtInputNombre.invalid){return;}
 
+
+        console.log(this.txtInputNombre.value);
+        console.log(this.txtInputNombre.valid)
+     }
 
     onAddFirmante(firmante: Firmante) {
         const newFirmante: Firmante = {
@@ -62,6 +84,7 @@ export class AddfirmanteComponent implements OnInit {
         };
 
         this.store.dispatch(acciones.addFirmante({ firmante: newFirmante }));
+        this.txtInputNombre.reset();
     }
 
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 //import { Setfirma } from '../../../interfaces/setfirma.interface';
 
 //import { ItemService } from 'src/app/demo/service/item.service';
@@ -19,12 +19,11 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
-import { Observable } from 'rxjs';
-import { Store } from '@ngrx/store';
+
 
 import { Firmante } from 'src/app/store/model/firmante.model';
 import * as acciones from 'src/app/store/actions/principal.actions';
-import { addFirmante } from '../../../../store/actions/principal.actions';
+import { Store } from '@ngrx/store';
 
 
 
@@ -43,11 +42,22 @@ import { addFirmante } from '../../../../store/actions/principal.actions';
 
 
 
-export class listfirmanteComponent {
-    firmantes: Firmante[] = [];
+export class listfirmanteComponent implements OnInit {
+
     selectedFirmante: Firmante | null = null; // Agrega esta propiedad
     editIndex: number | null = null;
-    newFirmante: Firmante;
+    firmantes: Firmante[] = [];
+    newFirmante: Firmante = {
+        Nombre: '',
+        ApellidoPaterno: '',
+        ApellidoMaterno: '',
+        Email: '',
+        CantidadDoctos: 0, // Valor predeterminado
+        TipoFirma: 1,       // Valor predeterminado
+        Celular: ''
+
+
+    };
 
     constructor(private store: Store<{ firmantes: Firmante[] }>) {
         this.store.select('firmantes').subscribe(firmantes => {
@@ -65,6 +75,10 @@ export class listfirmanteComponent {
         // this.resetForm();
     }
 
+    ngOnInit(): void {
+
+        console.log(this.firmantes);
+    }
 
 
 }
